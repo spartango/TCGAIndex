@@ -1,0 +1,27 @@
+// Project: A tool to cut up whole slide images
+version = '0.1'
+
+// Java components
+apply plugin: 'java'
+
+// Run support
+apply plugin:'application'
+
+// Language support
+sourceCompatibility = 1.6
+
+// Repositories
+repositories {
+    mavenCentral()
+}
+
+// External dependencies
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version: '16.0.1'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.7.3'
+}
+
+// Location of main (for running)
+mainClassName = "com.irislabs.deploy.Main"
+
+defaultTasks 'build'
