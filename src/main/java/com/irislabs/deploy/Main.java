@@ -58,6 +58,12 @@ public class Main {
                                             + index.getSlideUrls().keySet().size()
                                             + " "
                                             + selection
-                                            + " patients");
+                                            + " patients.\n"
+                                            + "Listing created at "
+                                            + selection + "_slides.txt",
+                                      "Complete",
+                                      JOptionPane.INFORMATION_MESSAGE
+        );
+
     }
 }
