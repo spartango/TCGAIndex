@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>TCGA Indexer by spartango</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>TCGA Indexer</h1>
+        <p>Tools for indexing data from the TCGA</p>
+
+        <p class="view"><a href="https://github.com/spartango/TCGAIndex">View the Project on GitHub <small>spartango/TCGAIndex</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/spartango/TCGAIndex/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/spartango/TCGAIndex/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/spartango/TCGAIndex">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="tcga-indexer" class="anchor" href="#tcga-indexer"><span class="octicon octicon-link"></span></a>TCGA Indexer</h1>
+
+<h2>
+<a name="what" class="anchor" href="#what"><span class="octicon octicon-link"></span></a>What?</h2>
+
+<p>This tool searches the <a href="http://cancergenome.nih.gov">The Cancer Genome Atlas</a>(TCGA) for whole slide images, and provides a listing of those slides for download and review. </p>
+
+<h2>
+<a name="why" class="anchor" href="#why"><span class="octicon octicon-link"></span></a>Why?</h2>
+
+<p>The TCGA is a massive repository of cancer patient data aggregated by the <a href="http://www.cancer.gov">NCI</a> and <a href="https://www.genome.gov">NHGRI</a> centers of the <a href="http://www.nih.gov">NIH</a>. The data is sourced from many cancer centers and includes clinical records, genomic, proteomic, and epigenoimic information for each patient. </p>
+
+<p>While many studies have focused on analysing the genomic and clinical data in TCGA, few have analyzed the high-resolution biopsy images that go along with that data. The TCGA's data portal is relatively unfriendly with respect to programmatic downloading of these images; they are disorganized and not grouped with patient information. </p>
+
+<h2>
+<a name="how" class="anchor" href="#how"><span class="octicon octicon-link"></span></a>How?</h2>
+
+<p>This simple tool searches the open-access HTTP directory to find slides wherever they are stored. It groups the slides with their patient identifier and site identifier.</p>
+
+<h3>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h3>
+
+<p>You'll need <a href="http://www.java.com/en/">Java 6</a> or above installed to use this tool in any form. It should work on any operating system that supports Java (Windows, Mac OS X, Linux, Solaris).</p>
+
+<p>There are two ways to use it:</p>
+
+<h3>
+<a name="use-as-an-application" class="anchor" href="#use-as-an-application"><span class="octicon octicon-link"></span></a>Use as an Application</h3>
+
+<p>The easiest way to get started with the Indexer is to download the <a href="https://github.com/spartango/TCGAIndex/releases/tag/1.0">application package</a>, and double click to run it.</p>
+
+<p>You'll be able to choose a disease study from the TCGA right away. Once that's done, the Indexer will take a moment to scan the TCGA for slides and prepare a listing for you. When it's done, the Indexer will tell you how many slides it found, and where the list file can be found.</p>
+
+<p>The output listings are tab-separated value text files, with three columns, in order:</p>
+
+<ul>
+<li>Patient Identifier (Site-Patient)</li>
+<li>Whether the tissue is a frozen section or FFPE slide</li>
+<li>The complete URL where the slide can be found</li>
+</ul><p>You can then bulk download slides using the list's third column. </p>
+
+<h3>
+<a name="use-as-a-library" class="anchor" href="#use-as-a-library"><span class="octicon octicon-link"></span></a>Use as a Library</h3>
+
+<p>If you're a developer, you can include the <a href="https://github.com/spartango/TCGAIndex/releases/tag/1.0">library</a> in your Java/JVM application.</p>
+
+<p>From there, you can programmatically create the Indexer and use it:</p>
+
+<pre><code>SlideIndex index = new SlideIndex(TCGAConstants.Bladder_Urothelial_Carcinoma, SlideIndex.FFPE_AND_FROZEN);
+
+// Examples of use
+Multimap&lt;String, String&gt; allSlides = index.getSlideUrls(); // Get all the slide urls, organized by patient
+Collection&lt;String&gt; patientSlides = index.getSlides(site, patient) // Get slide urls for a single patient
+Collection&lt;String&gt; siteSlides = index.getSlides(site) // Get slide urls for all patients of a single site
+</code></pre>
+
+<p>A full list of the disease studies in the TCGA can be found in TCGAConstants. 
+Note also that you can restrict indexing to FFPE or Frozen slides alone. </p>
+
+<h2>
+<a name="developer-stuff" class="anchor" href="#developer-stuff"><span class="octicon octicon-link"></span></a>Developer Stuff</h2>
+
+<p>You can build the source for this project using the <a href="http://www.gradle.org">Gradle</a> build system. </p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/spartango">spartango</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
